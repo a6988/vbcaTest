@@ -16,7 +16,7 @@ Sub readCsv()
     Dim i As Long, j As Long
     Dim fileName As String
     Dim ext As String
-    Dim splitStr As String
+    Dim delimiterStr As String
     
     
     ' csvファイルの読み込みダイアログからファイルを選択できるように変更
@@ -28,9 +28,9 @@ Sub readCsv()
     ext = Right(varFileName, 3)
     ' 拡張子から分割文字列を設定
     If ext = "csv" Then
-        splitStr = ","
+        delimiterStr = ","
     ElseIf ext = "tsv" Then
-        splitStr = "\t"
+        delimiterStr = Chr(9)
     End If
         
     intFree = FreeFile '空番号を取得
@@ -40,7 +40,7 @@ Sub readCsv()
     Do Until EOF(intFree)
         Line Input #intFree, strRec '1行読み込み
         i = i + 1
-        strSplit = Split(strRec, ",") 'カンマ区切りで配列へ
+        strSplit = Split(strRec, delimiterStr) 'カンマ区切りで配列へ
         For j = 0 To UBound(strSplit)
             Cells(i, j + 1) = strSplit(j)
         Next
