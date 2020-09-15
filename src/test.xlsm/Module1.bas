@@ -15,6 +15,8 @@ Sub readCsv()
     Dim strSplit() As String
     Dim i As Long, j As Long
     Dim fileName As String
+    Dim ext As String
+    Dim splitStr As String
     
     
     ' csvファイルの読み込みダイアログからファイルを選択できるように変更
@@ -22,7 +24,15 @@ Sub readCsv()
     varFileName = Application.GetOpenFilename(FileFilter:="データファイル(*.*),*.*", _
                                                 Title:="データファイルの選択")
 
-    
+    ' 拡張子を取得
+    ext = Right(varFileName, 3)
+    ' 拡張子から分割文字列を設定
+    If ext = "csv" Then
+        splitStr = ","
+    ElseIf ext = "tsv" Then
+        splitStr = "\t"
+    End If
+        
     intFree = FreeFile '空番号を取得
     Open varFileName For Input As #intFree 'CSVファィルをオープン
   
