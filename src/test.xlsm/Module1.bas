@@ -15,10 +15,13 @@ Sub readCsv()
     Dim strSplit() As String
     Dim i As Long, j As Long
     Dim fileName As String
-    ' csvファイルの読み込み
     
-    '読み込むファイル名
-    varFileName = ThisWorkbook.Path & "\tideOutput.csv"
+    
+    ' csvファイルの読み込みダイアログからファイルを選択できるように変更
+    ChDir ThisWorkbook.Path
+    varFileName = Application.GetOpenFilename(FileFilter:="CSVファイル(*.csv),*.csv", _
+                                                Title:="CSVファイルの選択")
+
     
     intFree = FreeFile '空番号を取得
     Open varFileName For Input As #intFree 'CSVファィルをオープン
