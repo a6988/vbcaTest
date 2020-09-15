@@ -19,8 +19,8 @@ Sub readCsv()
     
     ' csvファイルの読み込みダイアログからファイルを選択できるように変更
     ChDir ThisWorkbook.Path
-    varFileName = Application.GetOpenFilename(FileFilter:="CSVファイル(*.csv),*.csv", _
-                                                Title:="CSVファイルの選択")
+    varFileName = Application.GetOpenFilename(FileFilter:="データファイル(*.*),*.*", _
+                                                Title:="データファイルの選択")
 
     
     intFree = FreeFile '空番号を取得
